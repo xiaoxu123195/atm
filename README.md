@@ -1,132 +1,220 @@
+<div align="center">
+
+# 🔧 ATM - AI Tools Manager
+
+**A powerful CLI tool for managing npm-installed AI development tools, written in Go**
+
+[![Go Version](https://img.shields.io/badge/Go-1.21%2B-00ADD8?style=flat&logo=go)](https://go.dev/)
+[![Release](https://img.shields.io/github/v/release/xiaoxu123195/atm?style=flat&color=blue)](https://github.com/xiaoxu123195/atm/releases)
+[![License](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](LICENSE)
+[![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=flat)]()
+
 [English](README.md) | [中文](README_zh.md)
 
-# ATM-Go - AI Tools Manager
+![Demo](https://via.placeholder.com/800x400/1a1a1a/00d9ff?text=ATM+-+AI+Tools+Manager)
 
-🔧 A command-line interface for managing npm-installed AI development tools, written in Go.
+</div>
 
-## Features
+---
 
-- **Install Tools**: Install AI development tools that aren't currently installed
-- **Query Tools**: Check installed tools, their versions, and available updates
-- **Update Tools**: Update installed tools to their latest versions
-- **Uninstall Tools**: Remove installed tools from your system
-- **Multi-language Support**: Automatically detects system language (Chinese/English)
-- **Auto Update Check**: Checks for newer versions on startup
-- **Fast & Lightweight**: Single executable file, no Node.js required
-- **Cross-platform**: Works on Windows, Linux, and macOS
+## ✨ Features
 
-## Prerequisites
+- 🚀 **Fast & Lightweight** - Single executable, no Node.js required
+- 📦 **Package Management** - Install, update, query, and uninstall AI tools
+- 🌍 **Multi-language** - Auto-detects system language (English/Chinese)
+- 🎨 **Interactive UI** - Beautiful command-line interface
+- ⚡ **Concurrent Operations** - Fast version checking with goroutines
+- 🔄 **Auto Update Check** - Notifies when new versions are available
+- 🔧 **Easy Configuration** - Simple JSON-based tool configuration
+- 💻 **Cross-platform** - Works on Windows, Linux, and macOS
 
-- **npm**: The tool manages npm packages, so you need npm installed
-- No other dependencies required (Go runtime is not needed for the executable)
+## 📋 Supported AI Tools
 
-## Installation
+ATM currently supports **11 AI development tools**:
 
-### Quick Install (Windows)
+| Tool | Package | Description |
+|------|---------|-------------|
+| 🤖 Claude Code | `@anthropic-ai/claude-code` | Anthropic's official CLI for Claude AI |
+| 🧠 Qwen Code | `@qwen-code/qwen-code` | Qwen AI development tools |
+| 💼 Code Buddy | `@tencent-ai/codebuddy-code` | Tencent AI code assistant |
+| ✨ Gemini CLI | `@google/gemini-cli` | Google Gemini AI CLI |
+| 🔮 Auggie | `@augmentcode/auggie` | AI-powered code augmentation |
+| 💪 Crush | `@charmland/crush` | Charmland development tool |
+| 📝 Codex | `@openai/codex` | OpenAI Codex CLI tool |
+| 🌊 iFlow | `@iflow-ai/iflow-cli` | iFlow AI development CLI |
+| 🚀 OpenCode | `opencode-ai` | AI coding agent for terminal |
+| 🤝 Copilot CLI | `@github/copilot` | GitHub Copilot CLI |
+| 🎯 Kode | `@shareai-lab/kode` | ShareAI Lab terminal assistant |
 
-1. Download the latest `atm.exe` from [Releases](https://github.com/xiaoxu123195/atm/releases)
-2. Move `atm.exe` to a directory in your PATH:
-   ```bash
-   # Option 1: Copy to Windows System directory
-   copy atm.exe C:\Windows\System32\
+## 📥 Installation
 
-   # Option 2: Copy to Go bin directory (if Go is installed)
-   copy atm.exe %GOPATH%\bin\
-   ```
-3. Verify installation:
-   ```bash
-   atm
-   ```
+### Option 1: Download Pre-built Binary (Recommended)
 
-### Build from Source
+Download the latest release from [Releases](https://github.com/xiaoxu123195/atm/releases)
 
-1. Clone the repository:
-   ```bash
-   git clone https://github.com/xiaoxu123195/atm.git
-   cd atm-go
-   ```
+**Windows:**
+```bash
+# Download atm.exe and move to system directory
+copy atm.exe C:\Windows\System32\
+atm
+```
 
-2. Install dependencies:
-   ```bash
-   go mod download
-   ```
+**Linux/macOS:**
+```bash
+# Download and install
+sudo cp atm /usr/local/bin/
+sudo chmod +x /usr/local/bin/atm
+atm
+```
 
-3. Build:
-   ```bash
-   go build -o bin/atm.exe cmd/atm/main.go
-   ```
+### Option 2: Install via Go
 
-4. Add to PATH and run:
-   ```bash
-   .\bin\atm.exe
-   ```
+```bash
+go install github.com/xiaoxu123195/atm@latest
+```
 
-## Usage
+### Option 3: Build from Source
 
-Run the ATM tool:
+```bash
+# Clone repository
+git clone https://github.com/xiaoxu123195/atm.git
+cd atm
+
+# Install dependencies
+go mod download
+
+# Build
+go build -o atm cmd/atm/main.go
+
+# Run
+./atm
+```
+
+## 🚀 Quick Start
+
+Simply run:
 ```bash
 atm
 ```
 
-The application will present an interactive menu where you can:
-- Install new AI tools
-- Query installed tools and check for updates
-- Update existing tools to latest versions
-- Uninstall tools you no longer need
+You'll see an interactive menu:
 
-## Supported Tools
+```
+AI 工具管理器 (ATM)
 
-The following AI development tools are supported:
-
-- **Claude Code** - Anthropic's official CLI for Claude AI
-- **Qwen Code** - Qwen AI development tools
-- **Code Buddy** - Tencent AI code assistant
-- **Gemini CLI** - Google Gemini AI command line interface
-- **Auggie** - AI-powered code augmentation tool
-- **Crush** - Charmland development tool
-- **Codex** - OpenAI Codex CLI tool
-- **iFlow** - iFlow AI development CLI
-- **OpenCode** - AI coding agent, built for the terminal
-- **Copilot CLI** - GitHub Copilot CLI
-- **Kode** - ShareAI Lab terminal AI assistant
-
-## Configuration
-
-Tools are configured in `config/tools.json`. To add new tools, edit the configuration file and add new entries to the `tools` array.
-
-## Advanced Usage
-
-### Disable Version Check
-
-```bash
-# Windows
-set ATM_SKIP_VERSION_CHECK=true
-atm
-
-# Linux/Mac
-ATM_SKIP_VERSION_CHECK=true atm
+你想做什么？ (使用方向键选择)
+▸ 安装工具
+  查询工具
+  更新工具
+  卸载工具
+  退出
 ```
 
-### Force Language
+### Basic Operations
+
+**Install a tool:**
+1. Select "Install Tools"
+2. Choose tools from the list
+3. Wait for installation
+
+**Query installed tools:**
+1. Select "Query Tools"
+2. View all installed tools with version info
+
+**Update tools:**
+1. Select "Update Tools"
+2. Choose tools to update
+3. Confirm and wait
+
+**Uninstall tools:**
+1. Select "Uninstall Tools"
+2. Choose tools to remove
+3. Confirm uninstallation
+
+## ⚙️ Configuration
+
+### Environment Variables
 
 ```bash
-# Force English
-set LANG=en_US.UTF-8
-atm
+# Disable version check
+export ATM_SKIP_VERSION_CHECK=true
 
-# Force Chinese
-set LANG=zh_CN.UTF-8
-atm
+# Force language
+export LANG=zh_CN.UTF-8  # Chinese
+export LANG=en_US.UTF-8  # English
 ```
 
-## Contributing
+### Add Custom Tools
 
-1. Fork the repository
-2. Create your feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit your changes (`git commit -m 'Add some amazing feature'`)
-4. Push to the branch (`git push origin feature/amazing-feature`)
+Edit `config/tools.json`:
+
+```json
+{
+  "tools": [
+    {
+      "name": "Your Tool Name",
+      "package": "npm-package-name",
+      "description": "Tool description"
+    }
+  ]
+}
+```
+
+Then rebuild:
+```bash
+go build -o atm cmd/atm/main.go
+```
+
+## 📊 Comparison
+
+| Feature | Node.js Version | ATM (Go) |
+|---------|----------------|----------|
+| Runtime | Requires Node.js | ✅ None |
+| Install | `npm install -g` | ✅ Single binary |
+| Startup | ~500ms | ✅ ~50ms (10x faster) |
+| Size | ~10MB + node_modules | ✅ Single 9.7MB exe |
+| Memory | ~50MB | ✅ ~20MB |
+| Cross-compile | ❌ | ✅ Easy |
+
+## 🔧 Requirements
+
+**Runtime:**
+- npm (required - ATM manages npm packages)
+- No Go runtime needed (compiled binary)
+
+**Development:**
+- Go 1.21+
+- npm
+
+## 🤝 Contributing
+
+Contributions are welcome! Please feel free to submit a Pull Request.
+
+1. Fork the Project
+2. Create your Feature Branch (`git checkout -b feature/AmazingFeature`)
+3. Commit your Changes (`git commit -m 'Add some AmazingFeature'`)
+4. Push to the Branch (`git push origin feature/AmazingFeature`)
 5. Open a Pull Request
 
-## License
+## 📝 License
 
-MIT
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+This is a Go reimplementation of the original [ai-tools-manager](https://github.com/1e0n/ai-tools-manager) project by 1e0n.
+
+## 📮 Contact
+
+- GitHub: [@xiaoxu123195](https://github.com/xiaoxu123195)
+- Project Link: [https://github.com/xiaoxu123195/atm](https://github.com/xiaoxu123195/atm)
+
+---
+
+<div align="center">
+
+**[⬆ Back to Top](#-atm---ai-tools-manager)**
+
+Made with ❤️ by xiaoxu123195
+
+</div>

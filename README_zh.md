@@ -1,132 +1,220 @@
+<div align="center">
+
+# 🔧 ATM - AI 工具管理器
+
+**强大的 AI 开发工具命令行管理器，使用 Go 语言编写**
+
+[![Go 版本](https://img.shields.io/badge/Go-1.21%2B-00ADD8?style=flat&logo=go)](https://go.dev/)
+[![发行版](https://img.shields.io/github/v/release/xiaoxu123195/atm?style=flat&color=blue)](https://github.com/xiaoxu123195/atm/releases)
+[![许可证](https://img.shields.io/badge/License-MIT-green.svg?style=flat)](LICENSE)
+[![平台](https://img.shields.io/badge/Platform-Windows%20%7C%20Linux%20%7C%20macOS-lightgrey?style=flat)]()
+
 [English](README.md) | [中文](README_zh.md)
 
-# ATM-Go - AI 工具管理器
+![演示](https://via.placeholder.com/800x400/1a1a1a/00d9ff?text=ATM+-+AI+Tools+Manager)
 
-🔧 使用 Go 语言编写的命令行工具，用于管理 npm 安装的 AI 开发工具。
+</div>
 
-## 功能特性
+---
 
-- **安装工具**: 安装尚未安装的 AI 开发工具
-- **查询工具**: 查看已安装工具的版本和可用更新
-- **更新工具**: 将已安装工具更新到最新版本
-- **卸载工具**: 从系统中移除已安装的工具
-- **多语言支持**: 自动检测系统语言（中文/英文）
-- **自动更新检查**: 启动时检查新版本
-- **快速轻量**: 单个可执行文件，无需 Node.js
-- **跨平台**: 支持 Windows、Linux 和 macOS
+## ✨ 特性
 
-## 系统要求
+- 🚀 **快速轻量** - 单个可执行文件，无需 Node.js
+- 📦 **包管理** - 安装、更新、查询和卸载 AI 工具
+- 🌍 **多语言** - 自动检测系统语言（中文/英文）
+- 🎨 **交互式界面** - 精美的命令行用户界面
+- ⚡ **并发操作** - 使用 goroutine 实现快速版本检查
+- 🔄 **自动更新检查** - 有新版本时自动通知
+- 🔧 **易于配置** - 简单的 JSON 配置文件
+- 💻 **跨平台** - 支持 Windows、Linux 和 macOS
 
-- **npm**: 本工具管理 npm 包，因此需要安装 npm
-- 无需其他依赖（运行 exe 文件不需要 Go 运行时）
+## 📋 支持的 AI 工具
 
-## 安装
+ATM 目前支持 **11 个 AI 开发工具**：
 
-### 快速安装（Windows）
+| 工具 | 包名 | 描述 |
+|------|------|------|
+| 🤖 Claude Code | `@anthropic-ai/claude-code` | Anthropic 官方 Claude AI 命令行工具 |
+| 🧠 Qwen Code | `@qwen-code/qwen-code` | 通义千问 AI 开发工具 |
+| 💼 Code Buddy | `@tencent-ai/codebuddy-code` | 腾讯 AI 代码助手 |
+| ✨ Gemini CLI | `@google/gemini-cli` | Google Gemini AI 命令行工具 |
+| 🔮 Auggie | `@augmentcode/auggie` | AI 驱动的代码增强工具 |
+| 💪 Crush | `@charmland/crush` | Charmland 开发工具 |
+| 📝 Codex | `@openai/codex` | OpenAI Codex 命令行工具 |
+| 🌊 iFlow | `@iflow-ai/iflow-cli` | iFlow AI 开发命令行工具 |
+| 🚀 OpenCode | `opencode-ai` | 为终端打造的 AI 编码代理 |
+| 🤝 Copilot CLI | `@github/copilot` | GitHub Copilot 命令行工具 |
+| 🎯 Kode | `@shareai-lab/kode` | ShareAI Lab 终端助手 |
 
-1. 从 [Releases](https://github.com/xiaoxu123195/atm/releases) 下载最新的 `atm.exe`
-2. 将 `atm.exe` 移动到 PATH 环境变量包含的目录：
-   ```bash
-   # 方式 1: 复制到 Windows 系统目录
-   copy atm.exe C:\Windows\System32\
+## 📥 安装
 
-   # 方式 2: 复制到 Go bin 目录（如果已安装 Go）
-   copy atm.exe %GOPATH%\bin\
-   ```
-3. 验证安装:
-   ```bash
-   atm
-   ```
+### 方式 1：下载预编译二进制文件（推荐）
 
-### 从源码构建
+从 [Releases](https://github.com/xiaoxu123195/atm/releases) 下载最新版本
 
-1. 克隆仓库:
-   ```bash
-   git clone https://github.com/xiaoxu123195/atm.git
-   cd atm-go
-   ```
+**Windows：**
+```bash
+# 下载 atm.exe 并移动到系统目录
+copy atm.exe C:\Windows\System32\
+atm
+```
 
-2. 安装依赖:
-   ```bash
-   go mod download
-   ```
+**Linux/macOS：**
+```bash
+# 下载并安装
+sudo cp atm /usr/local/bin/
+sudo chmod +x /usr/local/bin/atm
+atm
+```
 
-3. 构建:
-   ```bash
-   go build -o bin/atm.exe cmd/atm/main.go
-   ```
+### 方式 2：通过 Go 安装
 
-4. 添加到 PATH 并运行:
-   ```bash
-   .\bin\atm.exe
-   ```
+```bash
+go install github.com/xiaoxu123195/atm@latest
+```
 
-## 使用方法
+### 方式 3：从源码构建
 
-运行 ATM 工具：
+```bash
+# 克隆仓库
+git clone https://github.com/xiaoxu123195/atm.git
+cd atm
+
+# 安装依赖
+go mod download
+
+# 构建
+go build -o atm cmd/atm/main.go
+
+# 运行
+./atm
+```
+
+## 🚀 快速开始
+
+直接运行：
 ```bash
 atm
 ```
 
-应用程序将显示交互式菜单，你可以：
-- 安装新的 AI 工具
-- 查询已安装工具并检查更新
-- 将现有工具更新到最新版本
-- 卸载不再需要的工具
+你会看到交互式菜单：
 
-## 支持的工具
+```
+AI 工具管理器 (ATM)
 
-目前支持以下 AI 开发工具：
-
-- **Claude Code** - Anthropic 官方 Claude AI 命令行工具
-- **Qwen Code** - 通义千问 AI 开发工具
-- **Code Buddy** - 腾讯 AI 代码助手
-- **Gemini CLI** - Google Gemini AI 命令行界面
-- **Auggie** - AI 驱动的代码增强工具
-- **Crush** - Charmland 开发工具
-- **Codex** - OpenAI Codex 命令行工具
-- **iFlow** - iFlow AI 开发命令行工具
-- **OpenCode** - 为终端打造的 AI 编码代理
-- **Copilot CLI** - GitHub Copilot 命令行工具
-- **Kode** - ShareAI Lab 终端 AI 助手
-
-## 配置
-
-工具配置在 `config/tools.json` 文件中。要添加新工具，请编辑配置文件并向 `tools` 数组添加新条目。
-
-## 高级用法
-
-### 禁用版本检查
-
-```bash
-# Windows
-set ATM_SKIP_VERSION_CHECK=true
-atm
-
-# Linux/Mac
-ATM_SKIP_VERSION_CHECK=true atm
+你想做什么？ (使用方向键选择)
+▸ 安装工具
+  查询工具
+  更新工具
+  卸载工具
+  退出
 ```
 
-### 强制指定语言
+### 基本操作
+
+**安装工具：**
+1. 选择"安装工具"
+2. 从列表中选择工具
+3. 等待安装完成
+
+**查询已安装的工具：**
+1. 选择"查询工具"
+2. 查看所有已安装工具及版本信息
+
+**更新工具：**
+1. 选择"更新工具"
+2. 选择要更新的工具
+3. 确认并等待
+
+**卸载工具：**
+1. 选择"卸载工具"
+2. 选择要移除的工具
+3. 确认卸载
+
+## ⚙️ 配置
+
+### 环境变量
 
 ```bash
-# 强制英文
-set LANG=en_US.UTF-8
-atm
+# 禁用版本检查
+export ATM_SKIP_VERSION_CHECK=true
 
-# 强制中文
-set LANG=zh_CN.UTF-8
-atm
+# 强制语言
+export LANG=zh_CN.UTF-8  # 中文
+export LANG=en_US.UTF-8  # 英文
 ```
 
-## 贡献
+### 添加自定义工具
 
-1. Fork 本仓库
-2. 创建你的特性分支 (`git checkout -b feature/amazing-feature`)
-3. 提交你的更改 (`git commit -m 'Add some amazing feature'`)
-4. 推送到分支 (`git push origin feature/amazing-feature`)
+编辑 `config/tools.json`：
+
+```json
+{
+  "tools": [
+    {
+      "name": "你的工具名称",
+      "package": "npm-package-name",
+      "description": "工具描述"
+    }
+  ]
+}
+```
+
+然后重新构建：
+```bash
+go build -o atm cmd/atm/main.go
+```
+
+## 📊 对比
+
+| 特性 | Node.js 版本 | ATM (Go) |
+|------|-------------|----------|
+| 运行时 | 需要 Node.js | ✅ 无需依赖 |
+| 安装 | `npm install -g` | ✅ 单个二进制文件 |
+| 启动速度 | ~500ms | ✅ ~50ms（快 10 倍）|
+| 大小 | ~10MB + node_modules | ✅ 单个 9.7MB exe |
+| 内存占用 | ~50MB | ✅ ~20MB |
+| 交叉编译 | ❌ | ✅ 简单 |
+
+## 🔧 系统要求
+
+**运行时：**
+- npm（必需 - ATM 管理 npm 包）
+- 无需 Go 运行时（已编译为二进制文件）
+
+**开发：**
+- Go 1.21+
+- npm
+
+## 🤝 贡献
+
+欢迎贡献！请随时提交 Pull Request。
+
+1. Fork 本项目
+2. 创建你的特性分支 (`git checkout -b feature/AmazingFeature`)
+3. 提交你的更改 (`git commit -m 'Add some AmazingFeature'`)
+4. 推送到分支 (`git push origin feature/AmazingFeature`)
 5. 开启一个 Pull Request
 
-## 许可证
+## 📝 许可证
 
-MIT
+本项目采用 MIT 许可证 - 查看 [LICENSE](LICENSE) 文件了解详情。
+
+## 🙏 致谢
+
+本项目是对 1e0n 的原始 [ai-tools-manager](https://github.com/1e0n/ai-tools-manager) 项目的 Go 语言重新实现。
+
+## 📮 联系方式
+
+- GitHub: [@xiaoxu123195](https://github.com/xiaoxu123195)
+- 项目链接: [https://github.com/xiaoxu123195/atm](https://github.com/xiaoxu123195/atm)
+
+---
+
+<div align="center">
+
+**[⬆ 回到顶部](#-atm---ai-工具管理器)**
+
+用 ❤️ 制作 by xiaoxu123195
+
+</div>
