@@ -165,17 +165,6 @@ Then rebuild:
 go build -o atm cmd/atm/main.go
 ```
 
-## 📊 Comparison
-
-| Feature | Node.js Version | ATM (Go) |
-|---------|----------------|----------|
-| Runtime | Requires Node.js | ✅ None |
-| Install | `npm install -g` | ✅ Single binary |
-| Startup | ~500ms | ✅ ~50ms (10x faster) |
-| Size | ~10MB + node_modules | ✅ Single 9.7MB exe |
-| Memory | ~50MB | ✅ ~20MB |
-| Cross-compile | ❌ | ✅ Easy |
-
 ## 🔧 Requirements
 
 **Runtime:**
@@ -199,10 +188,6 @@ Contributions are welcome! Please feel free to submit a Pull Request.
 ## 📝 License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## 🙏 Acknowledgments
-
-This is a Go reimplementation of the original [ai-tools-manager](https://github.com/1e0n/ai-tools-manager) project by 1e0n.
 
 ## 📮 Contact
 
